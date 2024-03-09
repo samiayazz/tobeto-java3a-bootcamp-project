@@ -2,6 +2,7 @@ package com.tobeto.java3a.bootcamp.controller.user;
 
 import com.tobeto.java3a.bootcamp.dto.user.applicant.request.CreateApplicantRequest;
 import com.tobeto.java3a.bootcamp.dto.user.applicant.request.EditApplicantRequest;
+import com.tobeto.java3a.bootcamp.dto.user.applicant.request.LoginApplicantRequest;
 import com.tobeto.java3a.bootcamp.model.user.Applicant;
 import com.tobeto.java3a.bootcamp.service.user.ApplicantService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,14 @@ public class ApplicantController {
 
     @GetMapping("/{id}")
     public Applicant getById(Integer id) {
+        // TODO check id here
         return applicantService.getById(id);
+    }
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody LoginApplicantRequest loginApplicantRequest) {
+        // TODO check credential and password here
+        return applicantService.login(loginApplicantRequest);
     }
 
     @PostMapping("/create")

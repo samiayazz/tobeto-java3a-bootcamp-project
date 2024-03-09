@@ -2,6 +2,7 @@ package com.tobeto.java3a.bootcamp.service.user;
 
 import com.tobeto.java3a.bootcamp.dto.user.applicant.request.CreateApplicantRequest;
 import com.tobeto.java3a.bootcamp.dto.user.applicant.request.EditApplicantRequest;
+import com.tobeto.java3a.bootcamp.dto.user.applicant.request.LoginApplicantRequest;
 import com.tobeto.java3a.bootcamp.model.user.Applicant;
 import com.tobeto.java3a.bootcamp.repository.user.ApplicantRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,14 @@ public class ApplicantService {
 
     public Applicant getById(Integer id) {
         return applicantRepository.findById(id).get();
+    }
+
+    public boolean login(LoginApplicantRequest loginApplicantRequest) {
+        // TODO check credential and password here
+        return applicantRepository.findByEmailOrUserNameAndPassword(
+                loginApplicantRequest.getCredential(),
+                loginApplicantRequest.getPassword()
+        ).isPresent();
     }
 
     public boolean create(CreateApplicantRequest createApplicantRequest) {
